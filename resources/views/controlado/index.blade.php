@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'poliAndino')
+@section('title', 'Tablero')
 
 @section('content_header')
     <h1>Control</h1>
@@ -15,5 +15,11 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        Swal.fire(
+            'The Internet?',
+            'That thing is still around?',
+            'question'
+        )
+    </script>
 @stop
