@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             SedeSeeder::class,
             HorarioSeeder::class,
             AreaSeeder::class,
+            CursoSeeder::class
         ]);
     }
 }

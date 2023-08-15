@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('grupos', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name')->comment('nombre del grupo');
+            $table->time('start_date')->comment('Fecha inicio del grupo');
+            $table->time('finish_date')->comment('Fecha final del grupo');
+            $table->integer('quantity_limit')->comment('Cantidad máxima de estudiantes');
             $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
             $table->timestamps();
         });
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('grupos');
     }
 };

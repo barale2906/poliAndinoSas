@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('modulos', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
+
+            $table->unsignedBigInteger('curso_id');
+            $table->foreign('curso_id')->references('id')->on('cursos');
+
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('modulos');
     }
 };

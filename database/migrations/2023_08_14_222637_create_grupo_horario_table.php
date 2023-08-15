@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('grupo_horario', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
+
+            $table->unsignedBigInteger('grupo_id');
+            $table->foreign('grupo_id')->references('id')->on('grupos');
+
+            $table->unsignedBigInteger('horario_id');
+            $table->foreign('horario_id')->references('id')->on('horarios');
+
             $table->timestamps();
         });
     }
@@ -24,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('grupo_horario');
     }
 };

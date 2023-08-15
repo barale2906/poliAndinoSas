@@ -14,16 +14,16 @@ return new class extends Migration
         Schema::create('sedes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name')->unique();
+            $table->string('name')->unique()->comment('nombre de la sede, debe ser única');
             $table->string('address');
             $table->string('phone');
             $table->string('nit');
-            $table->string('portfolio_assistant_name');
-            $table->string('portfolio_assistant_phone');
-            $table->string('portfolio_assistant_email');
+            $table->string('portfolio_assistant_name')->comment('nombre de la persona encargada');
+            $table->string('portfolio_assistant_phone')->comment('Teléfono de la persona encargada');
+            $table->string('portfolio_assistant_email')->comment('email d ela persona encargada');
             $table->time('start');
             $table->time('finish');
-            $table->integer('status')->default(1); // 0 Inactivo, 1 activo
+            $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
 
             $table->unsignedBigInteger('sector_id');
             $table->foreign('sector_id')->references('id')->on('sectors');

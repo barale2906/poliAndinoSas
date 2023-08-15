@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->integer('status')->default(1); // 0 Inactivo, 1 activo
+            $table->string('name')->unique()->comment('nombre del área dentro de la sede, debe ser unica');
+            $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
             $table->timestamps();
         });
     }
