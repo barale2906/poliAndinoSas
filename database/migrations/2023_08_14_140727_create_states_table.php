@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('states', function (Blueprint $table) {
+            $table->comment('Departamentos dentro de cada país');
             $table->id();
             $table->string('codeZip')->nullable();
-            $table->string('name')->unique();
-            $table->integer('status')->default(1); // 0 Inactivo, 1 activo
+            $table->string('name')->unique()->comment('nombre del departamento');;
+            $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
 
             $table->unsignedBigInteger('country_id');
             $table->foreign('country_id')->references('id')->on('countries');

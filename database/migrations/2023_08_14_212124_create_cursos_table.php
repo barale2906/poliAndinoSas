@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->comment('Posibles áreas dentro de las sedes');
+        Schema::create('cursos', function (Blueprint $table) {
+            $table->comment('Cursos dictados por el instituto');
             $table->id();
-            $table->string('name')->unique()->comment('nombre del área dentro de la sede, debe ser unica');
+            $table->string('name')->unique();
+            $table->string('type')->comment('Técnico o Práctico');
+            $table->integer('duration_hours');
+            $table->integer('duration_months');
             $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
             $table->timestamps();
         });
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('cursos');
     }
 };

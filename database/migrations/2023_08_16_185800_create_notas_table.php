@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->comment('Posibles áreas dentro de las sedes');
+        Schema::create('notas', function (Blueprint $table) {
+            $table->comment('Encabezado - concepto de notas');
             $table->id();
-            $table->string('name')->unique()->comment('nombre del área dentro de la sede, debe ser unica');
-            $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
+            $table->string('concepto');
+
+            $table->unsignedBigInteger('grupo_id');
+            $table->foreign('grupo_id')->references('id')->on('grupos');
+
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('notas');
     }
 };

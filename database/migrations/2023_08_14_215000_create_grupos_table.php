@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->comment('Posibles áreas dentro de las sedes');
+        Schema::create('grupos', function (Blueprint $table) {
+            $table->comment('Grupos para dictar cada modulo');
             $table->id();
-            $table->string('name')->unique()->comment('nombre del área dentro de la sede, debe ser unica');
+            $table->string('name')->comment('nombre del grupo');
+            $table->time('start_date')->comment('Fecha inicio del grupo');
+            $table->time('finish_date')->comment('Fecha final del grupo');
+            $table->integer('quantity_limit')->comment('Cantidad máxima de estudiantes');
             $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
             $table->timestamps();
         });
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('grupos');
     }
 };

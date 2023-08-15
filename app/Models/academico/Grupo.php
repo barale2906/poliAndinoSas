@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\ubicacion;
+namespace App\Models\academico;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Horario extends Model
+class Grupo extends Model
 {
     use HasFactory;
 
@@ -15,20 +15,29 @@ class Horario extends Model
 
     /**
      * Relación muchos a muchos.
-     * áreas que componen la sede
+     * Grupos de este modulo
      */
-    public function areas(): BelongsToMany
+    public function modulos(): BelongsToMany
     {
-        return $this->belongsToMany(Area::class);
+        return $this->belongsToMany(Modulo::class);
     }
 
     /**
      * Relación muchos a muchos.
-     * Grupos de este horario
+     * Horarios de este horario
      */
-    public function grupos(): BelongsToMany
+    public function horarios(): BelongsToMany
     {
-        return $this->belongsToMany(Grupo::class);
+        return $this->belongsToMany(Horario::class);
+    }
+
+    /**
+     * Relación muchos a muchos.
+     * Estudiantes de este grupo
+     */
+    public function estudiantes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
     }
 
     //Relación uno a muchos

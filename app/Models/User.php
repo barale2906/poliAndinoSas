@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -71,5 +73,32 @@ class User extends Authenticatable
     public function adminlte_profile_url()
     {
         return 'user/profile';
+    }
+
+    //Relación uno a muchos
+    public function asistencias(): HasMany
+    {
+        return $this->hasMany(Asistencia::class);
+    }
+
+    //Relación uno a muchos
+    public function asistenciaDetalle(): HasMany
+    {
+        return $this->hasMany(AsistenciaDetalle::class);
+    }
+
+    //Relación uno a muchos
+    public function notaDetalle(): HasMany
+    {
+        return $this->hasMany(NotaDetalle::class);
+    }
+
+    /**
+     * Relación muchos a muchos.
+     * Grupos para los usuarios
+     */
+    public function grupos(): BelongsToMany
+    {
+        return $this->belongsToMany(Grupo::class);
     }
 }

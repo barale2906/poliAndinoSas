@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('areas', function (Blueprint $table) {
-            $table->comment('Posibles áreas dentro de las sedes');
+        Schema::create('modulos', function (Blueprint $table) {
+            $table->comment('modulos dentro de cada curso');
             $table->id();
-            $table->string('name')->unique()->comment('nombre del área dentro de la sede, debe ser unica');
+            $table->string('name')->unique();
             $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
+
+            $table->unsignedBigInteger('curso_id');
+            $table->foreign('curso_id')->references('id')->on('cursos');
+
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('areas');
+        Schema::dropIfExists('modulos');
     }
 };

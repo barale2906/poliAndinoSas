@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
+            $table->comment('Países donde se tiene presencia');
             $table->id();
             $table->string('name')->unique();
-            $table->integer('status')->default(1); // 0 Inactivo, 1 activo
+            $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
             $table->timestamps();
         });
     }
