@@ -93,12 +93,32 @@ class User extends Authenticatable
         return $this->hasMany(NotaDetalle::class);
     }
 
+    //Relación uno a muchos
+    public function matriculados(): HasMany
+    {
+        return $this->hasMany(Matricula::class);
+    }
+
+    //Relación uno a muchos creadores matriculas
+    public function creadores(): HasMany
+    {
+        return $this->hasMany(Matricula::class);
+    }
+
+    //Relación uno a muchos comerciales de matriculas
+    public function comerciales(): HasMany
+    {
+        return $this->hasMany(Matricula::class);
+    }
+
     /**
      * Relación muchos a muchos.
-     * Grupos para los usuarios
+     * usuarios profesores grupos
      */
     public function grupos(): BelongsToMany
     {
         return $this->belongsToMany(Grupo::class);
     }
+
+
 }

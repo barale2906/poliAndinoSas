@@ -33,16 +33,23 @@ class Grupo extends Model
 
     /**
      * Relación muchos a muchos.
-     * Estudiantes de este grupo
+     * Profesores de este grupo
      */
-    public function estudiantes(): BelongsToMany
+    public function profesores(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
+
 
     //Relación uno a muchos
     public function asistencias(): HasMany
     {
         return $this->hasMany(Asistencia::class);
+    }
+
+    //Relación uno a muchos
+    public function matriculas(): HasMany
+    {
+        return $this->hasMany(Matricula::class);
     }
 }
