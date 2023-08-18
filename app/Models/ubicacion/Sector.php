@@ -25,4 +25,10 @@ class Sector extends Model
         return $this->hasMany(Sede::class);
     }
 
+    //Relación uno a muchos
+    public function perfiles(): HasMany
+    {
+        return $this->hasMany(Perfil::class);
+    }
+
 }

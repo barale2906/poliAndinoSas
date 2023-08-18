@@ -19,6 +19,12 @@ class Country extends Model
         return $this->hasMany(Sector::class);
     }
 
+    //Relación uno a muchos
+    public function perfiles(): HasMany
+    {
+        return $this->hasMany(Perfil::class);
+    }
+
     /**
      * Relación uno  muchos a través de
      * Obtener todos los estados para este país.
