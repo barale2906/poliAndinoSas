@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Sede extends Model
 {
@@ -26,6 +27,18 @@ class Sede extends Model
     public function areas(): BelongsToMany
     {
         return $this->belongsToMany(Area::class);
+    }
+
+    //Relación uno a muchos
+    public function cierres(): HasMany
+    {
+        return $this->hasMany(CierreCaja::class);
+    }
+
+    //Relación uno a muchos
+    public function recibos(): HasMany
+    {
+        return $this->hasMany(ReciboPago::class);
     }
 
 }

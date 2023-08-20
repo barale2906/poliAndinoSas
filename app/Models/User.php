@@ -111,6 +111,24 @@ class User extends Authenticatable
         return $this->hasMany(Matricula::class);
     }
 
+    //Relación uno a muchos cierres de caja
+    public function cierres(): HasMany
+    {
+        return $this->hasMany(CierreCaja::class);
+    }
+
+    //Relación uno a muchos recibos de pago
+    public function creaRecibo(): HasMany
+    {
+        return $this->hasMany(ReciboPago::class);
+    }
+
+    //Relación uno a muchos pagadores
+    public function pagador(): HasMany
+    {
+        return $this->hasMany(ReciboPago::class);
+    }
+
     /**
      * Relación muchos a muchos.
      * usuarios profesores grupos

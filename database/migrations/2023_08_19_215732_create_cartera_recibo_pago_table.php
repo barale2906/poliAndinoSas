@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carteras', function (Blueprint $table) {
+        Schema::create('cartera_recibo_pago', function (Blueprint $table) {
+            $table->comment('Recibos de caja por pagos de cartera');
             $table->id();
 
             $table->unsignedBigInteger('cartera_id');
             $table->foreign('cartera_id')->references('id')->on('carteras');
+
+            $table->unsignedBigInteger('recibo_pago_id');
+            $table->foreign('recibo_pago_id')->references('id')->on('recibo_pagos');
 
             $table->timestamps();
         });
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carteras');
+        Schema::dropIfExists('cartera_recibo_pago');
     }
 };

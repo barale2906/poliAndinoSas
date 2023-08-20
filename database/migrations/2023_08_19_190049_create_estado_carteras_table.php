@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cursos', function (Blueprint $table) {
-            $table->comment('Cursos dictados por el instituto');
+        Schema::create('estado_carteras', function (Blueprint $table) {
+            $table->comment('Estados de cartera aplicables');
             $table->id();
-            $table->string('name')->unique();
-            $table->string('tipo')->comment('Técnico o Práctico');
-            $table->double('duracion_horas');
-            $table->double('duracion_meses');
+            $table->string('name')->comment('nombre del estado de cartera');
             $table->integer('status')->default(1)->comment('0 Inactivo, 1 activo');
             $table->timestamps();
         });
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cursos');
+        Schema::dropIfExists('estado_carteras');
     }
 };
